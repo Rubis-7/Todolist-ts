@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoList, {TaskType} from "./TodoList";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const todoListTitle_1: string = "What to Learn"
+    const todoListTitle_2: string = "What to buy"
+    /*   const todoListTitle_3 = "What to Ok"
+       const todoListTitle_4 = "What to Read"
+   */
+    const tasks_1: Array<TaskType> = [
+        {id: 1, title: "HTML", isDone: true},
+        {id: 2, title: "CSS", isDone: true},
+        {id: 3, title: "JS/TS", isDone: false}
+    ]
+    const tasks_2: Array<TaskType> = [
+        {id: 1, title: "Milk", isDone: true},
+        {id: 2, title: "Sugar", isDone: true},
+        {id: 3, title: "Salt", isDone: false}
+    ]
+
+    return (
+        <div className="App">
+            <TodoList title={todoListTitle_1}
+                      tasks={tasks_1}
+            />
+            <TodoList title={todoListTitle_2}
+                      tasks={tasks_2}
+            />
+            {/*<TodoList title={todoListTitle_3}/>
+            <TodoList title={todoListTitle_4}/>*/}
+        </div>
+    );
 }
 
 export default App;
