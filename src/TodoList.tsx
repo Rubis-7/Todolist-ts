@@ -16,18 +16,16 @@ export type TaskType = {
 
 const TodoList = (props: TodoListPropsType) => {
 
-    const tasksListItems = props.tasks.map(t => {
-        return (
-            <li key={t.id}>
-                <input type="checkbox" checked={t.isDone}/>
-                <span>{t.title}</span>
-                <button onClick={() => {
-                    props.removeTask(t.id)
-                }}>x
-                </button>
-            </li>
-        )
-    })
+    const tasksListItems = props.tasks.map(t =>
+        <li key={t.id}>
+            <input type="checkbox" checked={t.isDone}/>
+            <span>{t.title}</span>
+            <button onClick={() =>
+                props.removeTask(t.id)
+            }>x
+            </button>
+        </li>
+    )
 
     return (
         <div>
@@ -45,7 +43,7 @@ const TodoList = (props: TodoListPropsType) => {
                 <button onClick={() => props.changeFilter('completed')}>Completed</button>
             </div>
         </div>
-    );
+    )
 };
 
 export default TodoList;
