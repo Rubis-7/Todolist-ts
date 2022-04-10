@@ -7,7 +7,7 @@ export type FilterValuesType = 'all' | 'active' | 'completed'
 function App() {
     const todoListTitle: string = 'What to Learn'
 
-    const [tasks, setTasks] = useState<Array<TaskType>>([
+    let [tasks, setTasks] = useState<Array<TaskType>>([
         {id: 1, title: 'HTML', isDone: true},
         {id: 2, title: 'CSS', isDone: true},
         {id: 3, title: 'JS/TS', isDone: false}
@@ -16,24 +16,19 @@ function App() {
     const [filter, setFilter] = useState<FilterValuesType>('all')
     const changeFilter = (filter: FilterValuesType) => {
         setFilter(filter)
-        console.log(filter)
     }
 
     const removeTask = (taskID: number) => {
         setTasks(tasks.filter(t => t.id !== taskID))
-        console.log(tasks)
     }
-    let taskForRender;
-    switch (filter) {
-        case 'completed':
-            taskForRender = tasks.filter(t => t.isDone)
-            break
-        case 'active':
-            taskForRender = tasks.filter(t => !t.isDone)
-            break
-        default:
-            taskForRender = tasks
+    let taskForRender = tasks
+    if (filter === 'active') {
+        taskForRender = tasks.filter((f) => f.isDone)
     }
+    if (filter === 'completed') {
+        taskForRender = tasks.filter((f) => !f.isDone)
+    }
+
     return (
         <div className="App">
             <TodoList
