@@ -12,7 +12,8 @@ function App() {
     let [tasks, setTasks] = useState<Array<TaskType>>([
         {id: v1(), title: 'HTML', isDone: true},
         {id: v1(), title: 'CSS', isDone: true},
-        {id: v1(), title: 'JS/TS', isDone: false}
+        {id: v1(), title: 'JS', isDone: false},
+        {id: v1(), title: 'TS', isDone: false}
     ])
 
     const [filter, setFilter] = useState<FilterValuesType>('all')
@@ -29,7 +30,6 @@ function App() {
         let newTasks = [newTask, ...tasks]
         setTasks(newTasks)
     }
-
 
     let taskForRender = tasks
     if (filter === 'active') {
@@ -48,7 +48,6 @@ function App() {
                 changeFilter={changeFilter}
                 addTask={addTask}
             />
-
         </div>
     );
 }
