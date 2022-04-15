@@ -1,6 +1,8 @@
 import React, {KeyboardEvent, ChangeEvent, useState, FC} from 'react';
 import {FilterValuesType} from './App';
 import Button from './components/Button';
+import Input from './components/Input';
+import {Fullinput} from './components/Fullinput';
 
 type TodoListPropsType = {
     title: string
@@ -17,6 +19,10 @@ export type TaskType = {
 
 const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
     const [title, setTitle] = useState<string>('')
+
+    const changeFilterHandler = (filter: FilterValuesType) => {
+        props.changeFilter(filter)
+    }
     const onClickAddTask = () => {
         const trimmedTitle = title.trim()
         if (trimmedTitle) {
@@ -27,15 +33,7 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
     const onClickHandler = (taskID: string) => {
         props.removeTask(taskID)
     }
-    const onKeyPressAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') onClickAddTask()
-    }
-    const onChangeSetTitle = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
-    }
-    const changeFilterHandler = (filter: FilterValuesType) => {
-        props.changeFilter(filter)
-    }
+
     const tasksListItems = props.tasks.map(t =>
         <li key={t.id}>
             <input type="checkbox" checked={t.isDone}/>
@@ -48,10 +46,8 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
         <div>
             <h3>{props.title}</h3>
             <div>
-                <input value={title}
-                       onChange={onChangeSetTitle}
-                       onKeyPress={onKeyPressAddTask}
-                />
+                {/*<Fullinput callBack={onClickAddTask}/>*/}
+                <Input title={title} setTitle={setTitle} callBack={onClickAddTask}/>
                 <Button name={'+'} callBack={onClickAddTask}/>
             </div>
             <ul>
