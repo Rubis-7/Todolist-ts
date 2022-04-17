@@ -31,6 +31,14 @@ function App() {
         setTasks(newTasks)
     }
 
+    const changeStatus = (taskID: string, isDone: boolean) => {
+        let task = tasks.find(t => t.id === taskID)
+        if (task) {
+            task.isDone = isDone
+        }
+        setTasks([...tasks])
+    }
+
     let taskForRender = tasks
     if (filter === 'active') {
         taskForRender = tasks.filter((f) => f.isDone)
@@ -47,6 +55,7 @@ function App() {
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 addTask={addTask}
+                changeStatus={changeStatus}
             />
         </div>
     );

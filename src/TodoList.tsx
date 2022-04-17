@@ -10,6 +10,7 @@ type TodoListPropsType = {
     removeTask: (taskID: string) => void
     changeFilter: (filter: FilterValuesType) => void
     addTask: (title: string) => void
+    changeStatus: (taskID: string, isDone: boolean) => void
 }
 export type TaskType = {
     id: string
@@ -23,6 +24,7 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
     const changeFilterHandler = (filter: FilterValuesType) => {
         props.changeFilter(filter)
     }
+
     const onClickAddTask = () => {
         const trimmedTitle = title.trim()
         if (trimmedTitle) {
@@ -34,13 +36,17 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
         props.removeTask(taskID)
     }
 
-    const tasksListItems = props.tasks.map(t =>
-        <li key={t.id}>
-            <input type="checkbox" checked={t.isDone}/>
+
+    const tasksListItems = props.tasks.map((t) => {
+        const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+            props.changeStatus(t.id, e.currentTarget.checked)
+        }
+        return <li key={t.id}>
+            <input type="checkbox" checked={t.isDone} onChange={onChangeHandler}/>
             <span>{t.title}</span>
             <Button name={'x'} callBack={() => onClickHandler(t.id)}/>
         </li>
-    )
+    })
 
     return (
         <div>
