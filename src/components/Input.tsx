@@ -4,11 +4,14 @@ type PropsType = {
     title: string
     setTitle: (title: string) => void
     callBack: () => void
+    error: string
+    setError: any
 }
 
 const Input = (props: PropsType) => {
 
     const onKeyPressAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
+        props.setError('')
         if (e.key === 'Enter') props.callBack()
     }
 
@@ -16,7 +19,8 @@ const Input = (props: PropsType) => {
         props.setTitle(e.currentTarget.value)
     }
     return (
-        <input value={props.title}
+        <input className={props.error ? 'error' : ''}
+               value={props.title}
                onChange={onChangeSetTitle}
                onKeyPress={onKeyPressAddTask}
         />

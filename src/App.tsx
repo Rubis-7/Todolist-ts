@@ -39,23 +39,16 @@ function App() {
         setTasks([...tasks])
     }
 
-    let taskForRender = tasks
-    if (filter === 'active') {
-        taskForRender = tasks.filter((f) => f.isDone)
-    }
-    if (filter === 'completed') {
-        taskForRender = tasks.filter((f) => !f.isDone)
-    }
-
     return (
         <div className="App">
             <TodoList
                 title={todoListTitle}
-                tasks={taskForRender}
+                tasks={tasks}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 addTask={addTask}
                 changeStatus={changeStatus}
+                filter={filter}
             />
         </div>
     );

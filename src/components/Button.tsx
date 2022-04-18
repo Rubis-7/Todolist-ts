@@ -1,8 +1,12 @@
 import React from 'react';
+import {FilterValuesType} from '../App';
+
 
 type ButtonPropsType = {
     name: string
     callBack: () => void
+    error: string
+    filter: FilterValuesType
 }
 
 const Button = (props: ButtonPropsType) => {
@@ -10,7 +14,11 @@ const Button = (props: ButtonPropsType) => {
         props.callBack()
     }
     return (
-        <button onClick={onClickHandler}>{props.name}</button>
+        <>
+            <button className={props.filter === props.name ? 'active-filter' : ''}
+                    onClick={onClickHandler}>{props.name}</button>
+            {props.error && <div className={'error-message'}>{props.error}</div>}
+        </>
     );
 };
 
