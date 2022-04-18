@@ -5,8 +5,8 @@ import {FilterValuesType} from '../App';
 type ButtonPropsType = {
     name: string
     callBack: () => void
-    error: string
-    filter: FilterValuesType
+    error?: string
+    filter?: FilterValuesType
 }
 
 const Button = (props: ButtonPropsType) => {

@@ -40,7 +40,7 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
     const onClickHandler = (taskID: string) => {
         props.removeTask(taskID)
     }
-    
+
     let taskForRender = props.tasks
     if (props.filter === 'active') {
         taskForRender = props.tasks.filter((f) => f.isDone)
@@ -49,14 +49,14 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
         taskForRender = props.tasks.filter((f) => !f.isDone)
     }
 
-    const tasksListItems = props.tasks.map((t) => {
+    const tasksListItems = taskForRender.map((t) => {
         const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             props.changeStatus(t.id, e.currentTarget.checked)
         }
         return <li key={t.id} className={t.isDone ? 'is-done' : ''}>
             <input type="checkbox" checked={t.isDone} onChange={onChangeHandler}/>
             <span>{t.title}</span>
-            <Button filter={props.filter} error={''} name={'x'} callBack={() => onClickHandler(t.id)}/>
+            <Button name={'x'} callBack={() => onClickHandler(t.id)}/>
         </li>
     })
 
@@ -65,19 +65,39 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
             <h3>{props.title}</h3>
             <div>
                 {/*<Fullinput callBack={onClickAddTask}/>*/}
-                <Input title={title} setTitle={setTitle} callBack={onClickAddTask} error={error} setError={setError}/>
-                <Button filter={props.filter} name={'+'} callBack={onClickAddTask} error={error}/>
+                <Input
+                    title={title}
+                    setTitle={setTitle}
+                    callBack={onClickAddTask}
+                    error={error}
+                    setError={setError}
+                />
+                <Button
+                    name={'+'}
+                    callBack={onClickAddTask}
+                    error={error}
+                />
 
             </div>
             <ul>
                 {tasksListItems.length ? tasksListItems : <span>Нет задач ёпта</span>}
             </ul>
             <div>
-                <Button filter={props.filter} error={''} name={'all'} callBack={() => changeFilterHandler('all')}/>
-                <Button filter={props.filter} error={''} name={'active'}
-                        callBack={() => changeFilterHandler('active')}/>
-                <Button filter={props.filter} error={''} name={'completed'}
-                        callBack={() => changeFilterHandler('completed')}/>
+                <Button
+                    filter={props.filter}
+                    name={'all'}
+                    callBack={() => changeFilterHandler('all')}
+                />
+                <Button
+                    filter={props.filter}
+                    name={'active'}
+                    callBack={() => changeFilterHandler('active')}
+                />
+                <Button
+                    filter={props.filter}
+                    name={'completed'}
+                    callBack={() => changeFilterHandler('completed')}
+                />
             </div>
         </div>
     )
