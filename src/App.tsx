@@ -51,7 +51,7 @@ function App() {
                 filter={filter}
             />
         </div>
-    );
+    )
 }
 
 export default App;
