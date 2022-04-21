@@ -80,7 +80,7 @@ const TodoList: FC<TodoListPropsType> = (props: TodoListPropsType) => {
 
             </div>
             <ul>
-                {tasksListItems.length ? tasksListItems : <span>Нет задач ёпта</span>}
+                {tasksListItems.length ? tasksListItems : <span>Нет задач ёпта </span>}
             </ul>
             <div>
                 <Button
