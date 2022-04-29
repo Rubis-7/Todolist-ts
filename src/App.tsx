@@ -67,8 +67,7 @@ function App() {
         //     setTasks([...tasks]);
         setTasks({...tasks, [todolistID]: tasks[todolistID].map(e => e.id === taskId ? {...e, isDone} : e)})
     }
-
-
+    
     // let tasksForTodolist = tasks;
     //
     // if (filter === "active") {
@@ -81,7 +80,6 @@ function App() {
     // function changeFilter(todolistID: string, value: FilterValuesType) {
     //     setTodolist(todolist.map(e => e.id === todolistID ? {...e, filter: value} : e))
     // }
-
 
     return (
         <div className="App">
@@ -101,7 +99,6 @@ function App() {
                         title={e.title}
                         tasks={tasks[e.id]}
                         removeTask={removeTask}
-                        // changeFilter={changeFilter}
                         addTask={addTask}
                         changeTaskStatus={changeStatus}
                         filter={e.filter}
