@@ -128,7 +128,6 @@ function App() {
                         removeTodolist={removeTodolist}
                         editTodolist={editTodolist}
                         editTask={editTask}
-
                     />
                 })
             }
